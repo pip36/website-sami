@@ -1,0 +1,95 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 24px;
+  color: purple;
+}
+
+/* NavBar */
+.glyphicon{
+  margin-left:5px;
+  padding:0;
+  border: 0;
+  float: right;
+}
+#titleLink{
+  color: purple;
+  position: relative;
+  top:6px;
+}
+#titleLink:hover{
+  color:black;
+}
+#navbar {
+  float:right;
+}
+.navbar-header {
+padding-bottom: 0;
+}
+.navbar-brand{
+  font-size: 48px;
+}
+
+.navbar{
+  margin-top:0px;
+}
+
+#active-nav-link{
+  color:purple;
+}
+
+/* Content */
+.jumboimage{
+    background-image: url("http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg");
+    height:550px;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+ #TitleBlock {
+    background-image: url("http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg");
+    height: 630px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Panels */
+.panel{
+  margin-top: 70px;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.jumbotron{
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.jumbotron .container{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.content-text-block{
+  width: 60%;
+}
+
+
+/* Image Viewer */
+.image-cycler img{
+  position:absolute;
+  display:none;
+  right: 10%;
+  width:20%;
+
+}
+#active-image{
+  display: block;
+}
