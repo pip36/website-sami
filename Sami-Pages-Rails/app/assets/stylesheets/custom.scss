@@ -8,6 +8,11 @@ body {
   color: purple;
 }
 
+.icon{
+  width:50px;
+  height: 50px;
+}
+
 /* NavBar */
 .glyphicon{
   margin-left:5px;
@@ -80,7 +85,9 @@ padding-bottom: 0;
 .content-text-block{
   width: 60%;
 }
+.container .content{
 
+}
 
 /* Image Viewer */
 .image-cycler img{
@@ -92,4 +99,34 @@ padding-bottom: 0;
 }
 #active-image{
   display: block;
+}
+
+/* Contact-Block */
+#contact-block{
+  margin-top: 80px;
+  .case-links{
+    float:right;
+  }
+}
+/* Contact-Form */
+.contact-form{
+  margin-top: 30px;
+ 
+
+  label{
+    width: 7em;
+    float: left;
+    text-align: right;
+    margin-right: 1em;
+    display:block;
+  }
+
+  input{
+    margin-bottom: 10px;
+
+  }
+  .submit{
+    margin-left: 20em;
+  }
+
 }

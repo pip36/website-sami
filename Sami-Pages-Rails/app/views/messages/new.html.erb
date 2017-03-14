@@ -1,0 +1,49 @@
+<div id="contact-block" class="container">
+  <div class="row">
+    <div class="col-lg-5">
+      <h1>  Contact </h1>
+      <p> You can contact me on Facebook and Twitter or by using the form below </p>
+
+      <div class="case-links">
+        <p> Snug Cases </p>
+        <%= link_to image_tag("1489520659_square-twitter.png", class: "icon"), "http://www.twitter.com/" %>
+        <%= link_to image_tag("1489520704_square-facebook.png", class: "icon"), "http://www.facebook.com" %>
+      </div>
+      
+      <div>
+        <p> Samantha Taylor </p>
+        <%= link_to image_tag("1489520659_square-twitter.png", class: "icon"), "http://www.twitter.com/" %>
+        <%= link_to image_tag("1489520704_square-facebook.png", class: "icon"), "http://www.facebook.com" %>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="contact-form">
+    <%= form_for @message, url:{action: "create"} do |f| %>
+
+      <%= f.label "email" %>
+      <%= f.email_field :email %>
+
+<br>
+
+      <%= f.label "subject" %>
+      <%= f.text_field :subject %>
+
+<br>
+
+      <%= f.label "message" %>
+      <%= f.text_area :content %>
+
+<br>
+
+      <%= f.submit "Send", class: "submit" %>
+
+
+    <% end %>
+  </div>
+</div>

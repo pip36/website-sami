@@ -7,14 +7,29 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a id = "titleLink" class="navbar-brand text-primary" href="file:///home/philipwhite/Sami_Pages/index.html"> Samantha Taylor </a>
+      <%= link_to "Samantha Taylor", root_url, id: "titleLink", class: "navbar-brand text-primary" %>
     </div>
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a id="active-nav-link" href="file:///home/philipwhite/Sami_Pages/index.html">Home</a></li>
-        <li><a href="file:///home/philipwhite/Sami_Pages/about.html">About</a></li>
-        <li><a href="file:///home/philipwhite/Sami_Pages/contact.html">Contact</a></li>
-        <li><a href='file:///home/philipwhite/Sami_Pages/shop.html'> Shop <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span> </a></li>
+
+
+        <li class="active"><%= link_to "Home", root_url, id: "active-nav-link" %></li>
+        <li><%= link_to "About", about_url, id: "active-nav-link" %></li>
+        <li>  <%= link_to "Contact", contact_url, id: "active-nav-link" %></li>
+
+        <li>
+          <div class="dropdown">
+          <button class"btn btn-primary dropdown-toggle"  data-toggle="dropdown"> Shop
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span>
+             <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li> Snug Cases </li>
+            <li> Oboe Cane </li>
+          </ul>
+          </div>
+        </li>
+
       </ul>
     </div><!--/.nav-collapse -->
   </div>
