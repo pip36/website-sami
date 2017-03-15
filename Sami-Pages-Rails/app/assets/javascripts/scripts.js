@@ -33,7 +33,7 @@ $(document).on('turbolinks:before-cache', function(){
 
 var CycleImages = function(selector){
   $(selector + " img").first().appendTo(selector).fadeOut(500);
-  $(selector + " img").first().fadeIn(500);
+  $(selector + " img").first().fadeIn(500).css('display', 'block');
 }
 
 var HideContents = function(){
