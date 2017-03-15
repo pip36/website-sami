@@ -94,15 +94,13 @@ p{
 
 /* Image Viewer */
 .image-cycler{
-
+  position:relative;
 
 }
 .image-cycler img{
   position:absolute;
   display:none;
-  width:300px;
-  left:18%;
-
+  width:100%;
 }
 #active-image{
   display: block;
