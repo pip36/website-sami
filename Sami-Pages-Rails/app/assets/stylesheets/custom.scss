@@ -93,18 +93,20 @@ p{
 }
 
 /* Image Viewer */
+
+
 .image-cycler{
   position:relative;
+  img{
+    position:absolute;
+    display:none;
+    width:100%;
+  }
+  #active-image{
+    display: block;
+  }
+}
 
-}
-.image-cycler img{
-  position:absolute;
-  display:none;
-  width:100%;
-}
-#active-image{
-  display: block;
-}
 
 .cycle-container{
   height:410px;

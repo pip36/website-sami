@@ -15,11 +15,6 @@ var ready = function() {
       $('#c-oboe-contents').toggle("slow", function(){});
     });
 
-
-
-      //clearInterval(intervalid2);
-      //clearInterval(intervalid3);
-      //clearInterval(intervalid4);
        window.interval1 = setInterval("CycleImages('#cycler-b-oboe')", 5000)
        window.interval2 = setInterval("CycleImages('#cycler-b-damore')", 5000)
        window.interval3 = setInterval("CycleImages('#cycler-b-caccia')", 5000)
@@ -27,7 +22,7 @@ var ready = function() {
 
 }
 
-//$(document).ready(ready);
+
 $(document).on('turbolinks:load', ready);
 $(document).on('turbolinks:before-cache', function(){
     clearInterval(window.interval1);
@@ -35,8 +30,6 @@ $(document).on('turbolinks:before-cache', function(){
     clearInterval(window.interval3);
     clearInterval(window.interval4);
 });
-
-
 
 var CycleImages = function(selector){
   $(selector + " img").first().appendTo(selector).fadeOut(500);
