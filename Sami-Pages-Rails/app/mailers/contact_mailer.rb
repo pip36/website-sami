@@ -9,6 +9,6 @@ class ContactMailer < ApplicationMailer
   def contact_message(message)
     @greeting = "Hi"
     @message = message
-    mail to: "phil_23@live.co.uk", subject: @message.subject
+    mail to: "phil_23@live.co.uk", from: @message.email, subject: @message.subject
   end
 end
