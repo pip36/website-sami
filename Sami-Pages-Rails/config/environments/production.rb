@@ -57,7 +57,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Sami-Pages-Rails_#{Rails.env}"
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_mailer = :smtp
+  config.action_mailer.delivery_method = :smtp
   host = 'infinite-chamber-37908.herokuapp.com'
   config.action_mailer.default_url_options = { host: host}
   ActionMailer::Base.smtp_settings = {
