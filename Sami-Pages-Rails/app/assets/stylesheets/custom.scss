@@ -9,6 +9,10 @@ body {
   font-size: 24px;
   color: purple;
 }
+p{
+  text-align: justify;
+  text-justify: inter-word;
+}
 
 .icon{
   width:50px;
@@ -60,7 +64,9 @@ body {
 
 
 /* Panels */
-
+.col-md-6{
+  text-align: center;
+}
 
 
 .panel{
@@ -87,10 +93,15 @@ body {
 }
 
 /* Image Viewer */
+.image-cycler{
+
+
+}
 .image-cycler img{
   position:absolute;
   display:none;
   width:300px;
+left:18%;
 
 }
 #active-image{
