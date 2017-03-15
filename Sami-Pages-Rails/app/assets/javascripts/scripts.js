@@ -1,6 +1,6 @@
 var ready = function() {
 
-    HideContents();
+
 
     $('#b-oboe-button').click(function(){
       $('#b-oboe-contents').toggle("slow", function(){});
@@ -19,7 +19,7 @@ var ready = function() {
        window.interval2 = setInterval("CycleImages('#cycler-b-damore')", 5000)
        window.interval3 = setInterval("CycleImages('#cycler-b-caccia')", 5000)
        window.interval4 = setInterval("CycleImages('#cycler-c-oboe')", 5000)
-
+HideContents();
 }
 
 
