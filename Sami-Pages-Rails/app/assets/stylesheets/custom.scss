@@ -24,24 +24,10 @@ body {
 }
 #titleLink{
   color: purple;
-  position: relative;
-  top:6px;
+  font-size: 4vw;
 }
 #titleLink:hover{
   color:black;
-}
-#navbar {
-  float:right;
-}
-.navbar-header {
-padding-bottom: 0;
-}
-.navbar-brand{
-  font-size: 48px;
-}
-
-.navbar{
-  margin-top:0px;
 }
 
 #active-nav-link{
