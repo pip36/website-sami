@@ -1,7 +1,5 @@
 var ready = function() {
 
-
-
     $('#b-oboe-button').click(function(){
       $('#b-oboe-contents').toggle("slow", function(){});
     });
