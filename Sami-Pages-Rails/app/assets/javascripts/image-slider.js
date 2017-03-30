@@ -13,11 +13,6 @@ $(document).on('turbolinks:load', function(){
     $('.thumbnails ul li').eq(id).addClass('active');
   };
 
-  var SetSize = function(width, height){
-    $('.image-slider').width(width).height(height);
-    $('.image-slider ul li').width(width).height(height);
-  };
-
   var CycleImage = function(num){
     imageIndex += num;
     if (imageIndex >= numberOfImages){
@@ -30,19 +25,18 @@ $(document).on('turbolinks:load', function(){
     SetActiveThumbnail(imageIndex);
   };
 
-  var Initialize = function(imagearray, descriptionarray, width, height){
+  var Initialize = function(id, imagearray, descriptionarray, width){
     imageDescriptions = descriptionarray;
-    $('.image-slider').prepend('<ul>  </ul>');
+    $(id).prepend('<ul>  </ul>');
 
     for(var i = 0; i<imagearray.length; i++){
-      $('.image-slider ul').append("<li> <img style='left:"+(i*width) + "px'src='" + imagearray[i] + "'></li>");
+      $(id + ' ul').append("<li> <img style='left:"+(i*width) + "px'src='" + imagearray[i] + "'></li>");
     }
 
-    $('.image-slider ul').width((width) * (imagearray.length));
+    $(id + ' ul').width((width) * (imagearray.length));
     imageWidth = width;
     GenerateThumbnails();
     SetActiveThumbnail(imageIndex);
-    //SetSize(width, height);
     DisplayImage(imageIndex);
     window.sliderInterval = setInterval(function(){CycleImage(1)},5000);
   };
@@ -50,7 +44,8 @@ $(document).on('turbolinks:load', function(){
   var imageIndex = 0;
   var imageWidth = 0;
   var numberOfImages = 7;
-  Initialize(["http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg",
+  Initialize("#slider-1",
+                ["http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg",
               "http://www.samitaylor.com/uploads/4/5/6/3/45631633/3441917_orig.jpg",
             "http://www.samitaylor.com/uploads/4/5/6/3/45631633/3734790_orig.jpg",
           "http://www.samitaylor.com/uploads/4/5/6/3/45631633/3615806_orig.jpg",
@@ -64,7 +59,7 @@ $(document).on('turbolinks:load', function(){
          'Me with my Da Caccia',
          '',
          ''],
-         300, 200);
+         300);
 
   $('.thumbnails ul li').click(function(){
     imageIndex = $('.thumbnails ul li').index(this);
