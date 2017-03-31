@@ -1,72 +1,98 @@
 $(document).on('turbolinks:load', function(){
-  var DisplayImage = function(id){
-    $('.image-slider ul').animate({left: -(imageWidth * id) + "px"}, 1000);
-    $('.image-slider .image-label').html(imageDescriptions[id]);
+
+// Moves the slider image to match the current image index
+  var DisplayImage = function(slider){
+    $(slider.id + ' ul').animate({left: -(slider.width * slider.imageIndex) + "px"}, 1000);
+    $(slider.id + ' .image-label').html(slider.descriptionArray[slider.imageIndex]);
   };
 
-  var GenerateThumbnails = function(){
-    $('.thumbnails').append($('.image-slider ul').clone().removeAttr('style'));
+//Styles the thumbnail image matching the displayed image
+  var SetActiveThumbnail = function(slider){
+    $(slider.id + '-thumbnails ul li').removeClass('active');
+    $(slider.id + '-thumbnails ul li').eq(slider.imageIndex).addClass('active');
   };
 
-  var SetActiveThumbnail = function(id){
-    $('.thumbnails ul li').removeClass('active');
-    $('.thumbnails ul li').eq(id).addClass('active');
-  };
-
-  var CycleImage = function(num){
-    imageIndex += num;
-    if (imageIndex >= numberOfImages){
-      imageIndex = 0;
+// Moves the current image index onward, and loops back to beginning
+  var CycleImage = function(sliderObject){
+    sliderObject.imageIndex += 1;
+    if (sliderObject.imageIndex >= sliderObject.numberOfImages){
+      sliderObject.imageIndex = 0;
     }
-    if (imageIndex < 0){
-      imageIndex = numberOfImages -1;
-    }
-    DisplayImage(imageIndex);
-    SetActiveThumbnail(imageIndex);
+    DisplayImage(sliderObject);
+    SetActiveThumbnail(sliderObject);
   };
 
-  var Initialize = function(id, imagearray, descriptionarray, width){
-    imageDescriptions = descriptionarray;
-    $(id).prepend('<ul>  </ul>');
+// The slider object
+  function slider(id, images, descriptions, width){
+    this.id = id;
+    this.imageArray = images;
+    this.descriptionArray = descriptions;
+    this.width = width;
+    this.imageIndex = 0;
+    this.numberOfImages = images.length;
+    this.thumbnails = []
 
-    for(var i = 0; i<imagearray.length; i++){
-      $(id + ' ul').append("<li> <img style='left:"+(i*width) + "px'src='" + imagearray[i] + "'></li>");
-    }
+    this.initialize = function(){
+      var slider = this;
+      //set width of slider, and the images
+      $(this.id).width(this.width);
 
-    $(id + ' ul').width((width) * (imagearray.length));
-    imageWidth = width;
-    GenerateThumbnails();
-    SetActiveThumbnail(imageIndex);
-    DisplayImage(imageIndex);
-    window.sliderInterval = setInterval(function(){CycleImage(1)},5000);
-  };
+      //Add the images to the html slider with matching id
+      for(var i = 0; i<this.numberOfImages; i++){
+        $(this.id + ' ul').append("<li> <img style='left:"+(i*this.width) + "px'src='" + this.imageArray[i] + "'></li>");
+      }
+      //Set the container list width to fit all images
+      $(this.id + ' ul').width((this.width) * (this.numberOfImages));
+      //$(this.id + ' ul li').width(300);
+      //Add thumbnails below image slider
+      $(this.id).after("<div class='thumbnails' id='" + this.id.substr(1) + "-thumbnails'> </div>");
+      $(this.id +'-thumbnails').append($(this.id + ' ul').clone().removeAttr('style'));
+      this.thumbnails = $(this.id + '-thumbnails li');
+      //Set the Active thumbnail styling
+      SetActiveThumbnail(this)
+      //Display the active image and start cycling function
+      DisplayImage(this);
+      slider.sliderInterval = setInterval(function(){CycleImage(slider)},5000)
+      //On thumbnail click change the displayed image, and reset timer
+      this.thumbnails.click(function(){
+        slider.imageIndex = slider.thumbnails.index(this);
+        SetActiveThumbnail(slider);
+        DisplayImage(slider);
+        clearInterval(slider.sliderInterval);
+        slider.sliderInterval = setInterval(function(){CycleImage(slider)},5000)
+      });
+      // clear all interval timers when turbolinks reloads page
+      $(document).on('turbolinks:before-cache', function(){
+          clearInterval(slider.sliderInterval);
+      });
+    };
+  }
 
-  var imageIndex = 0;
-  var imageWidth = 0;
-  var numberOfImages = 7;
-  Initialize("#slider-1",
-                ["http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg",
-              "http://www.samitaylor.com/uploads/4/5/6/3/45631633/3441917_orig.jpg",
-            "http://www.samitaylor.com/uploads/4/5/6/3/45631633/3734790_orig.jpg",
-          "http://www.samitaylor.com/uploads/4/5/6/3/45631633/3615806_orig.jpg",
-        "http://www.samitaylor.com/uploads/4/5/6/3/45631633/244011_orig.jpg",
-      "http://www.samitaylor.com/uploads/4/5/6/3/45631633/9225002_orig.jpg",
-    "http://www.samitaylor.com/uploads/4/5/6/3/45631633/9970413_orig.jpg"],
-        ['Me',
-         'Backstage at Cadogan hall prom concert',
-         '1920\'s period costume of Acis and Galetea',
-         '',
-         'Me with my Da Caccia',
-         '',
-         ''],
-         300);
+var slider1 = new slider('#slider-1', ["http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/3441917_orig.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/3734790_orig.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/3615806_orig.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/244011_orig.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/9225002_orig.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/9970413_orig.jpg"],
+['Me',
+ 'Backstage at Cadogan hall prom concert',
+ '1920\'s period costume of Acis and Galetea',
+ '',
+ 'Me with my Da Caccia',
+ '',
+ ''],
+ 200);
 
-  $('.thumbnails ul li').click(function(){
-    imageIndex = $('.thumbnails ul li').index(this);
-    DisplayImage(imageIndex);
-  });
+ slider1.initialize();
 
-  $(document).on('turbolinks:before-cache', function(){
-      clearInterval(window.sliderInterval);
-  });
+ var slider2 = new slider('#slider-2', ["http://www.samitaylor.com/uploads/4/5/6/3/45631633/6329548.jpg",
+ "http://www.samitaylor.com/uploads/4/5/6/3/45631633/5737067.jpg",
+ "http://www.samitaylor.com/uploads/4/5/6/3/45631633/5737067.jpg"],
+ ['Oboe 1',
+  'Oboe 2',
+  'Oboe 3'],
+  300);
+
+  slider2.initialize();
 });
