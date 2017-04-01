@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', function(){
       }
       //Set the container list width to fit all images
       $(this.id + ' ul').width((this.width) * (this.numberOfImages));
-      //$(this.id + ' ul li').width(300);
+
       //Add thumbnails below image slider
       $(this.id).after("<div class='thumbnails' id='" + this.id.substr(1) + "-thumbnails'> </div>");
       $(this.id +'-thumbnails').append($(this.id + ' ul').clone().removeAttr('style'));
@@ -82,7 +82,7 @@ var slider1 = new slider('#slider-1', ["http://cdn1.editmysite.com/uploads/4/5/6
  'Me with my Da Caccia',
  '',
  ''],
- 200);
+ 300);
 
  slider1.initialize();
 
@@ -93,6 +93,28 @@ var slider1 = new slider('#slider-1', ["http://cdn1.editmysite.com/uploads/4/5/6
   'Oboe 2',
   'Oboe 3'],
   300);
-
   slider2.initialize();
+
+  var slider3 = new slider('#slider-3', ["http://www.samitaylor.com/uploads/4/5/6/3/45631633/3622897.jpg",
+  "http://www.samitaylor.com/uploads/4/5/6/3/45631633/7350750.jpg",
+  "http://www.samitaylor.com/uploads/4/5/6/3/45631633/9616526.jpg",
+"http://www.samitaylor.com/uploads/4/5/6/3/45631633/1421440671.png"],
+  ['Oboe 1',
+   'Oboe 2',
+   'Oboe 3',
+ 'Oboe 4'],
+   300);
+   slider3.initialize();
+
+   var slider4 = new slider('#slider-4',
+   ["http://www.samitaylor.com/uploads/4/5/6/3/45631633/1421439114.png"],
+   ['Caccia 1'],
+    300);
+    slider4.initialize();
+
+    var slider5 = new slider('#slider-5',
+    ["http://www.samitaylor.com/uploads/4/5/6/3/45631633/6831411.jpg"],
+    ['Oboe 1'],
+     300);
+     slider5.initialize();
 });
