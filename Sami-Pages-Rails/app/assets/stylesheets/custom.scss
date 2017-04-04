@@ -26,6 +26,7 @@ p{
 }
 
 /* NavBar */
+
 .glyphicon{
   margin-left:5px;
   padding:0;
@@ -35,6 +36,7 @@ p{
 #titleLink{
   color: purple;
   font-size: 4vw;
+  margin-top: 3px;
 }
 #titleLink:hover{
   color:black;
@@ -137,11 +139,11 @@ padding-left:5px;
 
   input{
     margin-bottom: 10px;
-    width: 100%;
+    width: 95%;
     max-width: 500px;
   }
   textarea{
-    width:100%;
+    width:95%;
     max-width: 500px;
   }
   .submit{
@@ -158,27 +160,24 @@ padding-left:5px;
   padding: 0;
   overflow: hidden;
   position: relative;
-}
-
-.image-slider ul{
-  padding: 0;
-  list-style: none;
-  position: relative;
-  left:0;
-  //height: 400px;
-}
-
-.image-slider ul li{
-  float:left;
-  width:300px;
-}
-
-.image-slider ul li img{
-  width:inherit;
-  height: inherit;
-  position:absolute;
-  bottom: 0;
-  left:0;
+  ul{
+    padding: 0;
+    list-style: none;
+    position: relative;
+    left:0;
+    //height: 400px;
+    li{
+     float:left;
+     width:300px;
+     img{
+       width:inherit;
+       height: inherit;
+       position:absolute;
+       bottom: 0;
+       left:0;
+     }
+   }
+  }
 }
 
 .image-label{
@@ -201,19 +200,33 @@ padding-left:5px;
   list-style: none;
   display: inline-block;
   padding:0;
+  li{
+    float: left;
+    margin-right: 5px;
+    img{
+     width:40px;
+     height:30px;
+     opacity: 0.5;
+   }
+   img:hover{
+    opacity: 1;
+  }
+  }
 }
-.thumbnails ul li{
-  float: left;
-  margin-right: 5px;
-}
-.thumbnails ul li img{
-  width:40px;
-  height:30px;
-  opacity: 0.5;
-}
-.thumbnails ul li img:hover{
-  opacity: 1;
-}
+
 .thumbnails ul .active img{
   opacity: 1;
+}
+
+.front-content{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.btn-primary{
+  background-color: #c135ce !important;
+
+  -webkit-box-shadow: 10px 10px 5px grey;
+  -moz-box-shadow: 10px 10px 5px grey;
+  box-shadow: 10px 10px 5px grey;
 }
