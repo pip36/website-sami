@@ -9,7 +9,8 @@ end
     if @message.save
       #send email to phil_23
       ContactMailer.contact_message(@message).deliver_now
-      render 'new'
+      flash[:success] = "Message has been sent. Thank You!"
+      redirect_to contact_url
     else
       #error
       render 'new'
