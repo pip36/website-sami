@@ -1,0 +1,26 @@
+<h1>Products#index</h1>
+<p>Find me in app/views/products/index.html.erb</p>
+
+<h1> Cane <h1>
+cart = <%= @cart.id %>
+<div class='container'>
+
+  <div class='row'>
+    <div class='col-md-12'>
+
+      <ul>
+        <% @products.each do |product| %>
+        <%= @cart %>
+          <li> name: <%=product.name%>, price: <%=number_to_currency(product.unit_price, unit:'£')%> </li>
+          <%= form_for @order_item, url: order_items_create_url do |f| %>
+            <%= f.hidden_field :product_id, value: product.id %>
+            <%= f.hidden_field :cart_id, value: @cart %>
+            <%= f.select :quantity, ['0','5','10','15','20','25'] %>
+            <%= f.submit "add to cart" %>
+          <% end %>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>

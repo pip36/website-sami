@@ -1,0 +1,14 @@
+<h1>Carts#show</h1>
+<p>Find me in app/views/carts/show.html.erb</p>
+
+cart = <%= @cart.id %>
+<ul>
+  <% @orders.each do |order| %>
+    <%  product = Product.find_by(id: order.product_id) %>
+    <li> product name: <%= product.name %> </li>
+    <li> unit price: <%= number_to_currency(product.unit_price, unit:'£') %> </li>
+    <li> quantity: <%= order.quantity %> </li>
+    <li> total price: <%= number_to_currency(order.subtotal, unit:'£') %> </li>
+    ----------------------------------------------------------
+  <% end %>
+</ul>

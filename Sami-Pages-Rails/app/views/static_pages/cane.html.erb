@@ -1,0 +1,30 @@
+<h1> Cane <h1>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6'>
+      Information about cane here
+    </div>
+    <div class='col-md-6'>
+      (PICTURE OF CANE)
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-12'>
+<!-- form must create a new order, and new order item to add to it
+1) dropdown to select cane
+2) dropdown to select quantity
+3) button to add to cart-->
+      <ul>
+        <% @products.each do |product| %>
+          <li> name: <%=product.name%>, price: <%=number_to_currency(product.unit_price, unit:'£')%> </li>
+          <%= form_for @order_item, url: {action: "create"} do |f| %>
+            <%= f.submit "add to cart" %>
+          <% end %>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>
