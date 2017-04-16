@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
 
-  post 'order_items/create'
+resources :order_items
 
-  get 'order_items/update'
-
-  get 'order_items/destroy'
 
   get 'carts/show'
 

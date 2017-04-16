@@ -14,9 +14,14 @@ class OrderItemsController < ApplicationController
 
 
   def update
+    @order = OrderItem.find(params[:id])
+    @order.update_attributes(order_item_params)
+    redirect_to carts_show_url
   end
 
   def destroy
+    OrderItem.find(params[:id]).destroy
+    redirect_to carts_show_url
   end
 
   private

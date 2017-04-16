@@ -1,23 +1,48 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<div class='container'>
 
-cart = <%= @cart.id %>
-<ul>
-  <% @orders.each do |order| %>
+<h1 style='margin-top:60px'>Shopping Cart</h1>
+
+<% @orders.each do |order| %>
+<div class='row'>
+  <div class='col-md-12 cart-listing'>
+    <%= form_for order do |f| %>
+    <div class='edit-links'>
+      <%= link_to "Remove Item", order_item_url(order), method: :delete, confirm: "Are you sure?" %>
+      <br>
+      <%= f.submit "Update Item" %>
+    </div>
+
+<table style='width:80%'>
+  <tr>
+    <th style='width:30%'> Product </th>
+    <th style='width:10%'> Price </th>
+    <th style='width:15%'> Quantity </th>
+    <th style='width:30%; text-align:right'> Subtotal </th>
+  </tr>
+  <tr>
     <%  product = Product.find_by(id: order.product_id) %>
-    <li> product name: <%= product.name %> </li>
-    <li> unit price: <%= number_to_currency(product.unit_price, unit:'£') %> </li>
-    <li> quantity: <%= order.quantity %> </li>
-    <li> total price: <%= number_to_currency(order.subtotal, unit:'£') %> </li>
-    ----------------------------------------------------------
-  <% end %>
-</ul>
-Grand Total = <%= number_to_currency(@cart.total, unit:'£') %>
+    <td> <%= product.name %> </td>
+    <td> <%= number_to_currency(product.unit_price, unit:'£') %> </td>
+
+      <td> <%= f.select :quantity, ['0','5','10','15','20','25'] %> </td>
+    <% end %>
+    <td style='text-align:right'> <%= number_to_currency(order.subtotal, unit:'£') %> </td>
+  </tr>
+</table>
+
+
+
+  </div>
+</div>
+<% end %>
+
+<% if @orders.length > 0 %>
+Total = <%= number_to_currency(@cart.total, unit:'£') %>
 
 
 <div id="paypal-button-container"></div>
 
-<div id="confirm" >
+<div id="confirm" class="hidden">
   <div>Ship to:</div>
   <div><span id="recipient"></span>, <span id="line1"></span>, <span id="city"></span></div>
   <div><span id="state"></span>, <span id="zip"></span>, <span id="country"></span></div>
@@ -28,10 +53,16 @@ Grand Total = <%= number_to_currency(@cart.total, unit:'£') %>
 <div id="thanks" class="hidden">
   Thanks, <span id="thanksname"></span>!
 </div>
+</div>
+
+<% else %>
+Your cart is empty!
+<% end %>
 
 <script>
 
   // Render the PayPal button
+
 
   paypal.Button.render({
 
@@ -39,6 +70,12 @@ Grand Total = <%= number_to_currency(@cart.total, unit:'£') %>
 
       env: 'sandbox', // sandbox | production
 
+      style: {
+          size: 'small',
+          color: 'blue',
+          shape: 'pill',
+          label: 'checkout'
+      },
       // PayPal Client IDs - replace with your own
       // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 
@@ -50,19 +87,17 @@ Grand Total = <%= number_to_currency(@cart.total, unit:'£') %>
       // Wait for the PayPal button to be clicked
 
       payment: function() {
-        var order_total = <%= @cart.total.to_s %>;
-        console.log(order_total);
+
           // Make a client-side call to the REST api to create the payment
-
+          var order_total = <%= @cart.total.to_s %>;
           return paypal.rest.payment.create(this.props.env, this.props.client, {
-              transactions: [
-                  {
-
-                      amount: { total: "90", currency: 'GBP' }
-                  }
-              ]
-          });
-      },
+                transactions: [
+                    {
+                        amount: { total: order_total, currency: 'GBP' }
+                    }
+                ]
+            });
+        },
 
 
       //commit: true,
@@ -86,8 +121,8 @@ Grand Total = <%= number_to_currency(@cart.total, unit:'£') %>
               document.querySelector('#country').innerText   = shipping.country_code;
 
               document.querySelector('#paypal-button-container').style.display = 'none';
-              document.querySelector('#confirm').style.display = 'block';
 
+              $('#confirm').removeClass('hidden');
               // Listen for click on confirm button
 
               document.querySelector('#confirmButton').addEventListener('click', function() {
@@ -105,8 +140,8 @@ Grand Total = <%= number_to_currency(@cart.total, unit:'£') %>
 
                      document.querySelector('#thanksname').innerText = shipping.recipient_name;
 
-                      document.querySelector('#confirm').style.display = 'none';
-                      document.querySelector('#thanks').style.display = 'block';
+                      $('#confirm').addClass('hidden');
+                      $('#thanks').removeClass('hidden');
                   });
               });
           });

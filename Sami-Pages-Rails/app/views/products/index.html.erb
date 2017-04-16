@@ -12,7 +12,7 @@ cart = <%= @cart.id %>
         <% @products.each do |product| %>
         <%= @cart %>
           <li> name: <%=product.name%>, price: <%=number_to_currency(product.unit_price, unit:'£')%> </li>
-          <%= form_for @order_item, url: order_items_create_url do |f| %>
+          <%= form_for @order_item, url: order_items_url do |f| %>
             <%= f.hidden_field :product_id, value: product.id %>
             <%= f.hidden_field :cart_id, value: @cart %>
             <%= f.select :quantity, ['0','5','10','15','20','25'] %>
