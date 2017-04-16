@@ -1,73 +1,81 @@
 <div class='container'>
-
 <h1 style='margin-top:60px'>Shopping Cart</h1>
 
+<!-- Displays each order, product info, and form for update and delete methods-->
 <% @orders.each do |order| %>
-<div class='row'>
-  <div class='col-md-12 cart-listing'>
-    <%= form_for order do |f| %>
-    <div class='edit-links'>
-      <%= link_to "Remove Item", order_item_url(order), method: :delete, confirm: "Are you sure?" %>
-      <br>
-      <%= f.submit "Update Item" %>
+  <div class='row'>
+    <div class='col-md-12 cart-listing'>
+      <%= form_for order do |f| %>
+<!-- These are the links for deleting/ editing orders -->
+        <div class='edit-links'>
+          <%= link_to "Remove Item", order_item_url(order), method: :delete,
+                                       data:{confirm: "Are you sure?"} %>
+            <br>
+          <%= f.submit "Update Item" %>
+        </div>
+<!-- Table displaying all the product information for the order item -->
+        <table style='width:80%'>
+          <tr>
+            <th style='width:30%'> Product </th>
+            <th style='width:10%'> Price </th>
+            <th style='width:15%'> Quantity </th>
+            <th style='width:30%; text-align:right'> Subtotal </th>
+          </tr>
+          <tr>
+          <%  product = Product.find_by(id: order.product_id) %>
+            <td> <%= product.name %> </td>
+            <td> <%= number_to_currency(product.unit_price, unit:'£') %> </td>
+<!-- This is the dropdown quantity select that will be submitted to the update method -->
+            <td>
+              <span class='q-dropdown'><%= f.select :quantity, ['5','10','15','20','25'] %></span>
+              <span class='q-confirm' style='display:none'> <%= order.quantity %> </span>
+            </td>
+            <td style='text-align:right'> <%= number_to_currency(order.subtotal, unit:'£') %> </td>
+          </tr>
+        </table>
+      <% end %>
     </div>
-
-<table style='width:80%'>
-  <tr>
-    <th style='width:30%'> Product </th>
-    <th style='width:10%'> Price </th>
-    <th style='width:15%'> Quantity </th>
-    <th style='width:30%; text-align:right'> Subtotal </th>
-  </tr>
-  <tr>
-    <%  product = Product.find_by(id: order.product_id) %>
-    <td> <%= product.name %> </td>
-    <td> <%= number_to_currency(product.unit_price, unit:'£') %> </td>
-
-      <td> <%= f.select :quantity, ['0','5','10','15','20','25'] %> </td>
-    <% end %>
-    <td style='text-align:right'> <%= number_to_currency(order.subtotal, unit:'£') %> </td>
-  </tr>
-</table>
-
-
-
   </div>
-</div>
 <% end %>
 
+<!-- If the cart is not empty then this will display the total to pay
+and also add the paypal button to the page -->
 <% if @orders.length > 0 %>
 Total = <%= number_to_currency(@cart.total, unit:'£') %>
-
-
+<!-- The paypal button itself -->
 <div id="paypal-button-container"></div>
-
+<!-- This is displayed after logging onto paypal and confirming payment -->
 <div id="confirm" class="hidden">
-  <div>Ship to:</div>
+  <div class="alert alert-info">
+    Please confirm that the delivery address and order is correct, then press
+    the button to complete your order.
+  </div>
+<div class="delivery-address">
+  <div>Delivery Address:</div>
   <div><span id="recipient"></span>, <span id="line1"></span>, <span id="city"></span></div>
   <div><span id="state"></span>, <span id="zip"></span>, <span id="country"></span></div>
-
+</div>
   <button id="confirmButton">Complete Payment</button>
 </div>
-
-<div id="thanks" class="hidden">
-  Thanks, <span id="thanksname"></span>!
+<!-- This will be displayed after the payment is taken and order is compete -->
+<div id="thanks" class="hidden alert alert-success" role="alert">
+  Thanks, <span id="thanksname"></span> for your purchase! Your order will be
+  delivered as soon as possible.
 </div>
-</div>
 
+<!-- if the shopping cart has no items this will be displayed -->
 <% else %>
-Your cart is empty!
+  Your cart is empty!
 <% end %>
 
+<!-- This script handles the payment through paypal, demo and
+documentation found at https://developer.paypal.com/demo/checkout/#/pattern/client -->
 <script>
 
   // Render the PayPal button
-
-
   paypal.Button.render({
 
       // Set your environment
-
       env: 'sandbox', // sandbox | production
 
       style: {
@@ -76,16 +84,14 @@ Your cart is empty!
           shape: 'pill',
           label: 'checkout'
       },
-      // PayPal Client IDs - replace with your own
-      // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 
+      // Create a PayPal app: https://developer.paypal.com/developer/applications/create
       client: {
         sandbox:    'AeV0YsJsQbIRT-aJjjDc14nXntGVpUVtqMi7jVH72VQIi4nh1SmuR3RbCgIR2iWkyGINDe6zBXd4nRqL',
         production: 'AXTUgoZOvnOTLN7QENMCv7rokmz2q3JyH3NR74vkZSm_7IOOBynM-zWmZSAwU747JuZaiApOFrYeJKa6'
       },
 
       // Wait for the PayPal button to be clicked
-
       payment: function() {
 
           // Make a client-side call to the REST api to create the payment
@@ -99,37 +105,34 @@ Your cart is empty!
             });
         },
 
-
-      //commit: true,
       // Wait for the payment to be authorized by the customer
-
       onAuthorize: function(data, actions) {
 
           // Get the payment details
-
           return actions.payment.get().then(function(data) {
 
               // Display the payment details and a confirmation button
-
               var shipping = data.payer.payer_info.shipping_address;
 
-              document.querySelector('#recipient').innerText = shipping.recipient_name;
-              document.querySelector('#line1').innerText     = shipping.line1;
-              document.querySelector('#city').innerText      = shipping.city;
-              document.querySelector('#state').innerText     = shipping.state;
-              document.querySelector('#zip').innerText       = shipping.postal_code;
-              document.querySelector('#country').innerText   = shipping.country_code;
+              $('#recipient').text(shipping.recipient_name);
+              $('#line1').text(shipping.line1);
+              $('#city').text(shipping.city);
+              $('#state').text(shipping.state);
+              $('#zip').text(shipping.postal_code);
+              $('#country').text(shipping.country_code);
 
-              document.querySelector('#paypal-button-container').style.display = 'none';
-
+              $('#paypal-button-container').hide();
+              $('.edit-links').hide();
+              $('.q-dropdown').hide();
+              $('.q-confirm').css({display: "block"});
               $('#confirm').removeClass('hidden');
               // Listen for click on confirm button
 
-              document.querySelector('#confirmButton').addEventListener('click', function() {
+              $('#confirmButton').click(function() {
 
                   // Disable the button and show a loading message
 
-                  document.querySelector('#confirm').innerText = 'Loading...';
+                  $('#confirm').text('Loading...');
                   document.querySelector('#confirm').disabled = true;
 
                   // Execute the payment

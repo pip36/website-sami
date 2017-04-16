@@ -1,26 +1,32 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
 
-<h1> Cane <h1>
-cart = <%= @cart.id %>
+
+
 <div class='container'>
-
+  <h1> Cane <h1>
+    
+<% @products.each do |product| %>
   <div class='row'>
-    <div class='col-md-12'>
+    <div class='col-md-12 shop-listing'>
 
-      <ul>
-        <% @products.each do |product| %>
-        <%= @cart %>
-          <li> name: <%=product.name%>, price: <%=number_to_currency(product.unit_price, unit:'£')%> </li>
-          <%= form_for @order_item, url: order_items_url do |f| %>
-            <%= f.hidden_field :product_id, value: product.id %>
-            <%= f.hidden_field :cart_id, value: @cart %>
-            <%= f.select :quantity, ['0','5','10','15','20','25'] %>
-            <%= f.submit "add to cart" %>
-          <% end %>
-        <% end %>
-      </ul>
+<%= form_for @order_item, url: order_items_url do |f| %>
+  <%= f.hidden_field :product_id, value: product.id %>
+  <%= f.hidden_field :cart_id, value: @cart %>
 
+      <table>
+        <tr>
+          <th style='width:30%'> Product </th>
+          <th style='width:30%'> Price </th>
+          <th style='width:20%'> Quantity </th>
+        </tr>
+        <tr>
+          <td> <%=product.name%> </td>
+          <td> <%=number_to_currency(product.unit_price, unit:'£')%> per piece </td>
+          <td> <%= f.select :quantity, ['0','5','10','15','20','25'] %> </td>
+          <td> <%= f.submit "add to cart" %> </td>
+        </tr>
+      </table>
     </div>
+    <% end %>
   </div>
+  <% end %>
 </div>

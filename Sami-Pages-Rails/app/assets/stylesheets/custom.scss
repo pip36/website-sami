@@ -29,11 +29,9 @@ p{
 
 
 .glyphicon{
-  
-  margin-left:5px;
-  padding:0;
-  border: 0;
-  float: right;
+
+color:purple;
+
 }
 #titleLink{
   color: purple;
@@ -52,10 +50,14 @@ p{
   font-size: 24px;
 }
 
+.navbar-right li{
+  margin-bottom:0;
+}
+
 /* Content */
 .fill{
-  min-height: 90%;
-  height: 90%;
+  min-height: 80%;
+  height: 80%;
 }
 .jumboimage{
     background-image: url("http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg");
@@ -252,4 +254,16 @@ padding-left:5px;
   .edit-links{
     float:right;
   }
+}
+
+.shop-listing{
+  border-bottom: 2px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
+
+}
+.delivery-address{
+  border-bottom: 2px solid grey;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 20px;
 }
