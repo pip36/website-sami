@@ -26,8 +26,19 @@ p{
 }
 
 /* NavBar */
+.navbar-nav {
+  #shopping-cart-head-link{
+    padding: 0px, 5px, 0px, 5px;
+    margin-left:10px;
+    border-left: 2px solid black;
+    a{
+      margin-right:5px;
+      margin-left: 10px;
+      padding:0;
 
-
+    }
+  }
+}
 .glyphicon{
 
 color:purple;
@@ -50,10 +61,16 @@ color:purple;
   font-size: 24px;
 }
 
-.navbar-right li{
-  margin-bottom:0;
+.navbar-right {
+  padding-top: 5px;
+  padding-bottom: 0px;
+  li{
+    padding-bottom: 0;
+  }
 }
-
+.badge{
+  background-color:red;
+}
 /* Content */
 .fill{
   min-height: 80%;
@@ -99,27 +116,6 @@ color:purple;
 
 .content-text-block{
   width: 60%;
-}
-.container .content{
-
-}
-
-/* Image Viewer */
-.image-cycler{
-  position:relative;
-  img{
-    position:absolute;
-    display:none;
-    width:300px;
-    height:300px;
-  }
-  #active-image{
-    display: block;
-  }
-}
-
-.cycle-container{
-  height:410px;
 }
 
 /* Contact-Block */

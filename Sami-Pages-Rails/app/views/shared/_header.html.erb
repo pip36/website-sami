@@ -18,7 +18,6 @@
         <li>
           <div class="dropdown">
           <button class"btn btn-primary dropdown-toggle"  data-toggle="dropdown"> Shop
-
              <span class="caret"></span>
           </button>
           <ul class="dropdown-menu">
@@ -27,10 +26,17 @@
           </ul>
           </div>
         </li>
-        <li>
+
+        <li id='shopping-cart-head-link'>
+
           <%= link_to carts_show_url do %>
-            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span>
+            <button>
+          Cart
+          <span class='badge'>  <%= cart_items_count %> </span>
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span>
+</button>
           <% end %>
+
         </li>
       </ul>
     </div><!--/.nav-collapse -->

@@ -11,4 +11,8 @@ module CartsHelper
     end
   end
 
+  def cart_items_count
+    current_cart.order_items.count
+  end
+
 end
