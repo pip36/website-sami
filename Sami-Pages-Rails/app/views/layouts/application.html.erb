@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SamiPagesRails</title>
+    <title> <%=@title%> </title>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +17,7 @@
   <body>
 
     <%= render 'shared/header' %>
-    <div style='margin-top:60px'> </div>
+    <div style='margin-top:55px'> </div>
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
