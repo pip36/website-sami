@@ -31,7 +31,7 @@
       <%= number_to_currency(order.subtotal, unit:'£') %>
     </div>
 
-    <div class='col-md-3 cart-item-info'>
+    <div class='col-md-3 cart-item-info edit-links'>
 <!-- These are the links for deleting/ editing orders -->
       <%= link_to "Remove Item", order_item_url(order), method: :delete,
                                    data:{confirm: "Are you sure?"}, remote:true%>
