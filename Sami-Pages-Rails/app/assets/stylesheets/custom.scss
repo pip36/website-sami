@@ -82,7 +82,7 @@ p{
 }
 /* Content */
 .fill{
-  min-height: 80%;
+
   height: 80%;
 }
 .jumboimage{
@@ -93,7 +93,22 @@ p{
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
-    min-height: 100%;
+
+    div{
+      position: absolute;
+      
+      color:white;
+      width:400px;
+
+      right:0;
+      bottom:0;
+      margin-right:20px;
+      margin-bottom:10px;
+      p{
+
+        font-size: 24px;
+      }
+    }
 }
 
 

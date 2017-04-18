@@ -1,6 +1,5 @@
 <% @title = "Cane" %>
 
-
 <div class='container'>
   <h1> Cane <h1>
 
@@ -8,7 +7,7 @@
   <div class='row'>
     <div class='col-md-12 shop-listing'>
 
-<%= form_for @order_item, url: order_items_url do |f| %>
+<%= form_for @order_item, url: order_items_url, remote: true do |f| %>
   <%= f.hidden_field :product_id, value: product.id %>
   <%= f.hidden_field :cart_id, value: @cart %>
 

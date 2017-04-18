@@ -5,7 +5,7 @@ class OrderItemsController < ApplicationController
     @order_item = current_cart.order_items.new(order_item_params)
 
     if @order_item.save
-      flash[:success] = @order_item.product.name + " has been added to cart."                    
+      flash[:success] = @order_item.product.name + " has been added to cart."
       redirect_to cane_url
     else
       flash[:danger] = "Item has not been added"

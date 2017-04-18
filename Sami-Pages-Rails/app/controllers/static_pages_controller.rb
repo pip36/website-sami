@@ -18,5 +18,8 @@ def cane
   @order_item = Cart.first.order_items.new
 end
 
+def cases
+
+end
 
 end

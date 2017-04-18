@@ -7,11 +7,11 @@
 <% @orders.each do |order| %>
   <div class='row'>
     <div class='col-md-12 cart-listing'>
-      <%= form_for order do |f| %>
+      <%= form_for order, remote:true do |f| %>
 <!-- These are the links for deleting/ editing orders -->
         <div class='edit-links'>
           <%= link_to "Remove Item", order_item_url(order), method: :delete,
-                                       data:{confirm: "Are you sure?"} %>
+                                       data:{confirm: "Are you sure?"}, remote:true%>
             <br>
           <%= f.submit "Update Item" %>
         </div>
