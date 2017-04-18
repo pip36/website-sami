@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 products = Product.create([
-  {name: 'Rouche', unit_price: '1.80'},
-  {name: 'Neuranter', unit_price: '1.80'}
+  {name: 'Rouche', unit_price: '1.80',
+    description:'Flexible cane from south france with a lovely warm tone'},
+  {name: 'Neuranter', unit_price: '1.80',
+    description:'Otherwise known as magic cane, this cane is in high demand!'}
   ])
