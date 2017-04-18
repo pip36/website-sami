@@ -1,5 +1,15 @@
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
+
+    <div id='shopping-cart-head-link'>
+      <%= link_to carts_show_url do %>
+      <button>
+          <span class='badge'>  <%= cart_items_count %> </span>
+          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span>
+      </button>
+      <% end %>
+    </div>
+    
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -9,14 +19,9 @@
       </button>
       <%= link_to "Samantha Taylor", root_url, id: "titleLink", class: "navbar-brand text-primary" %>
     </div>
-    <div id='shopping-cart-head-link'>
-      <%= link_to carts_show_url do %>
-      <button>
-          <span class='badge'>  <%= cart_items_count %> </span>
-          <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> </span>
-      </button>
-      <% end %>
-    </div>
+
+
+
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li class="<%= active_class(root_url)%>"><%= link_to "Home", root_url%></li>
