@@ -5,39 +5,41 @@
 
 <!-- Displays each order, product info, and form for update and delete methods-->
 <% @orders.each do |order| %>
-  <div class='row'>
-    <div class='col-md-12 cart-listing'>
-      <%= form_for order, remote:true do |f| %>
-<!-- These are the links for deleting/ editing orders -->
-        <div class='edit-links'>
-          <%= link_to "Remove Item", order_item_url(order), method: :delete,
-                                       data:{confirm: "Are you sure?"}, remote:true%>
-            <br>
-          <%= f.submit "Update Item" %>
-        </div>
+  <%= form_for order, remote:true do |f| %>
+  <%  product = Product.find_by(id: order.product_id) %>
+
+  <div class='row cart-listing'>
 <!-- Table displaying all the product information for the order item -->
-        <table style='width:80%'>
-          <tr>
-            <th style='width:30%'> Product </th>
-            <th style='width:10%'> Price </th>
-            <th style='width:15%'> Quantity </th>
-            <th style='width:30%; text-align:right'> Subtotal </th>
-          </tr>
-          <tr>
-          <%  product = Product.find_by(id: order.product_id) %>
-            <td> <%= product.name %> </td>
-            <td> <%= number_to_currency(product.unit_price, unit:'£') %> </td>
-<!-- This is the dropdown quantity select that will be submitted to the update method -->
-            <td>
-              <span class='q-dropdown'><%= f.select :quantity, ['5','10','15','20','25'] %></span>
-              <span class='q-confirm' style='display:none'> <%= order.quantity %> </span>
-            </td>
-            <td style='text-align:right'> <%= number_to_currency(order.subtotal, unit:'£') %> </td>
-          </tr>
-        </table>
-      <% end %>
+    <div class="col-md-3 cart-item-info">
+      <h3> Product </h3>
+      <p><%= product.name %></p>
+    </div>
+
+    <div class="col-md-2 cart-item-info">
+      <h3> Price </h3>
+      <p><%= number_to_currency(product.unit_price, unit:'£') %></p>
+    </div>
+
+    <div class="col-md-2 cart-item-info">
+      <h3> Quantity </h3>
+      <span class='q-dropdown'><%= f.select :quantity, ['5','10','15','20','25'] %></span>
+      <span class='q-confirm' style='display:none'> <%= order.quantity %> </span>
+    </div>
+
+    <div class="col-md-2 cart-item-info">
+      <h3> Subtotal </h3>
+      <%= number_to_currency(order.subtotal, unit:'£') %>
+    </div>
+
+    <div class='col-md-3 cart-item-info'>
+<!-- These are the links for deleting/ editing orders -->
+      <%= link_to "Remove Item", order_item_url(order), method: :delete,
+                                   data:{confirm: "Are you sure?"}, remote:true%>
+        <br>
+      <%= f.submit "Update Item" %>
     </div>
   </div>
+  <% end %>
 <% end %>
 
 <!-- If the cart is not empty then this will display the total to pay
@@ -64,7 +66,7 @@ Total = <%= number_to_currency(@cart.total, unit:'£') %>
   Thanks, <span id="thanksname"></span> for your purchase! Your order will be
   delivered as soon as possible.
 </div>
-
+</div>
 <!-- if the shopping cart has no items this will be displayed -->
 <% else %>
   Your cart is empty!

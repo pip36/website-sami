@@ -271,11 +271,8 @@ padding-left:5px;
   border-bottom: 2px solid grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 20px;
-  ul{
-      list-style: none;
-  }
-  .edit-links{
-    float:right;
+  .cart-info{
+
   }
 }
 
@@ -294,8 +291,12 @@ padding-left:5px;
   border-bottom: 2px solid grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 20px;
-
 }
+
+.cart-item-info{
+  float:left;
+}
+
 .delivery-address{
   border-bottom: 2px solid grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
