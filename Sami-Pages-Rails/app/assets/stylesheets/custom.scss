@@ -8,6 +8,8 @@ body {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 24px;
   color: purple;
+  background-image: url("paisley.png");
+  background-repeat: repeat;
 }
 p{
   text-align: justify;
@@ -90,6 +92,7 @@ p{
 
   height: 80%;
 }
+
 .jumboimage{
     background-image: url("http://cdn1.editmysite.com/uploads/4/5/6/3/45631633/background-images/874978948.jpg");
     background-attachment: fixed;
@@ -136,6 +139,7 @@ p{
 .jumbotron{
   padding-top: 3px;
   padding-bottom: 3px;
+  background-color: white;
 }
 
 .jumbotron .container{
@@ -255,7 +259,7 @@ padding-left:5px;
 }
 
 .btn-primary{
-  background-color: #c135ce !important;
+  background-color: purple !important;
 
   -webkit-box-shadow: 10px 10px 5px grey;
   -moz-box-shadow: 10px 10px 5px grey;
@@ -272,6 +276,7 @@ padding-left:5px;
   border-bottom: 2px solid grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 20px;
+  background-color: white;
   .cart-info{
 
   }
@@ -286,13 +291,9 @@ padding-left:5px;
   margin-right: auto;
   width:300px;
   padding: 3px 10px 3px 10px;
+  background-color: white;
 }
 
-.shop-listing{
-  border-bottom: 2px solid grey;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 20px;
-}
 
 .cart-item-info{
   float:left;
@@ -302,4 +303,11 @@ padding-left:5px;
   border-bottom: 2px solid grey;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 20px;
+}
+
+.submit-button{
+  margin-top:3px;
+  a{
+    color:purple;
+  }
 }
