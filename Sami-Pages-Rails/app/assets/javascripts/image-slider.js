@@ -87,7 +87,7 @@ var slider1 = new slider('#slider-1', ["http://cdn1.editmysite.com/uploads/4/5/6
  'Me with my Da Caccia',
  '',
  ''],
- 300,
+ 250,
 400);
 
  slider1.initialize();
