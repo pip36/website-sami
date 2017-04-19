@@ -1,7 +1,7 @@
 <% @title = "Shopping Cart" %>
 
 <div class='container'>
-<h1 style='margin-top:60px'>Shopping Cart</h1>
+<h1 style='margin-top:30px'>Shopping Cart</h1>
 
 <!-- Displays each order, product info, and form for update and delete methods-->
 <% @orders.each do |order| %>
@@ -22,7 +22,7 @@
 
     <div class="col-md-2 cart-item-info">
       <h3> Quantity </h3>
-      <span class='q-dropdown'><%= f.select :quantity, ['5','10','15','20','25'] %></span>
+      <span class='q-dropdown'><%= f.number_field(:quantity, in: 1.0..100.0, step: 1.0) %></span>
       <span class='q-confirm' style='display:none'> <%= order.quantity %> </span>
     </div>
 
@@ -33,10 +33,10 @@
 
     <div class='col-md-3 cart-item-info edit-links'>
 <!-- These are the links for deleting/ editing orders -->
-      <button class="submit-button">
+
         <%= link_to "Remove Item", order_item_url(order), method: :delete,
                                    data:{confirm: "Are you sure?"}, remote:true%>
-       </button>
+
         <br>
       <%= f.submit "Update Item", class:'submit-button'%>
     </div>

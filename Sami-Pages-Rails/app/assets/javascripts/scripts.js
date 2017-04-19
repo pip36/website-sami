@@ -23,13 +23,7 @@ var ready = function() {
 // Calls ready function when page is loaded with turbolinks
 $(document).on('turbolinks:load', ready);
 
-$(document).ready(function(){
-  $('.navbar-nav li').click(function(){
-    $('.navbar-nav li').removeClass('active');
-    $(this).addClass('active');
-  });
 
-});
 
 var HideContents = function(){
   $('.container .content').hide();

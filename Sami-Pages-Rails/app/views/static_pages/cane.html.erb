@@ -4,7 +4,7 @@
   <h1 style="margin-top: 60px"> Cane <h1>
 <p> Here can go some information and pictures of cane. <p>
 <div class="row">
-<% @products.each do |product| %>
+<% @caneproducts.each do |product| %>
 
 
 
@@ -12,9 +12,10 @@
   <%= f.hidden_field :product_id, value: product.id %>
   <%= f.hidden_field :cart_id, value: @cart %>
 
-<div class="col-md-6">
+<div class="col-md-4">
 <div class="product-card">
   <h3> <%=product.name%> </h3>
+  <img class="product-image" src=<%= image_url(product.image_path)%>>
   <br>
   <p> <%=product.description%> </p>
   <br>

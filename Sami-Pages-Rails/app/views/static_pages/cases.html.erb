@@ -1,0 +1,31 @@
+<% @title = "Snug Cases" %>
+
+<div class="container">
+  <h1 style="margin-top: 30px"> Snug Cases <h1>
+<p> Here can go some information and pictures of cases. <p>
+<div class="row">
+<% @caseproducts.each do |product| %>
+
+
+
+<%= form_for @order_item, url: order_items_url, remote: true do |f| %>
+  <%= f.hidden_field :product_id, value: product.id %>
+  <%= f.hidden_field :cart_id, value: @cart %>
+  <%= f.hidden_field :quantity, value: 1 %>
+<div class="col-md-4">
+<div class="product-card">
+  <h3> <%=product.name%> </h3>
+  <img class="product-image" src=<%= image_url(product.image_path)%>>
+  <br>
+  <p> <%=product.description%> </p>
+  <br>
+  <p><%=number_to_currency(product.unit_price, unit:'£')%> <p>
+
+  <%= f.submit "add to cart" %>
+</div>
+</div>
+    <% end %>
+
+  <% end %>
+</div>
+</div>
