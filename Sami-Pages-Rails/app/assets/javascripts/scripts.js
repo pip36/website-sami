@@ -14,10 +14,22 @@ var ready = function() {
       }
     });
 
-
-
 //Hide all extra content tabs
    HideContents();
+
+//If screen width is small display mobile front page
+$(window).resize(function(){
+    if ($(window).width() < 1024){
+      $('.inner-image-text').css('display', 'none');
+      $('.front-mobile-text').css('display', 'block');
+    }
+    else{
+      $('.inner-image-text').css('display', 'block');
+      $('.front-mobile-text').css('display', 'none');
+    }
+});
+
+
 }
 
 // Calls ready function when page is loaded with turbolinks
