@@ -32,9 +32,9 @@ p{
 
 .btn-primary{
   background-color: purple !important;
-  -webkit-box-shadow: 5px 5px 3px $shadow-color;
-  -moz-box-shadow: 5px 5px 3px $shadow-color;
-  box-shadow: 5px 5px 3px $shadow-color;
+  -webkit-box-shadow: 2px 2px 1px $shadow-color;
+  -moz-box-shadow: 2px 2px 1px $shadow-color;
+  box-shadow: 2px 2px 1px $shadow-color;
 }
 
 .alert{
@@ -123,7 +123,7 @@ p{
       bottom:0;
       margin-right:20px;
       margin-bottom:10px;
-      
+
       p{
         font-size: 24px;
       }
