@@ -18,15 +18,11 @@ var ready = function() {
    HideContents();
 
 //If screen width is small display mobile front page
+
+SetDisplay();
+
 $(window).resize(function(){
-    if ($(window).width() < 1024){
-      $('.inner-image-text').css('display', 'none');
-      $('.front-mobile-text').css('display', 'block');
-    }
-    else{
-      $('.inner-image-text').css('display', 'block');
-      $('.front-mobile-text').css('display', 'none');
-    }
+  SetDisplay()
 });
 
 
@@ -39,4 +35,16 @@ $(document).on('turbolinks:load', ready);
 
 var HideContents = function(){
   $('.container .content').hide();
+}
+
+var SetDisplay = function(){
+  $('.jumboimage').height($('.jumboimage img').height());
+  if ($(window).width() < 1024){
+    $('.inner-image-text').css('display', 'none');
+    $('.front-mobile-text').css('display', 'block');
+  }
+  else{
+    $('.inner-image-text').css('display', 'block');
+    $('.front-mobile-text').css('display', 'none');
+  }
 }
