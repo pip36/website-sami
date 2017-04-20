@@ -3,6 +3,25 @@
 <div class='container'>
 <h1 style='margin-top:30px'>Shopping Cart</h1>
 
+<!-- The confirmation block displayed after siging in to paypal -->
+<div class="order-confirm hidden">
+  <div class="alert alert-info">
+    Please confirm that the delivery address and order is correct, then press
+    the button to complete your order.
+  </div>
+  <div class="delivery-address">
+    <div>Delivery Address:</div>
+    <div><span id="recipient"></span>, <span id="line1"></span>, <span id="city"></span></div>
+    <div><span id="state"></span>, <span id="zip"></span>, <span id="country"></span></div>
+  </div>
+</div>
+
+<!-- The thanks message after payment has been made -->
+<div id="thanks" class="hidden alert alert-success" role="alert">
+  Thanks, <span id="thanksname"></span> for your purchase! Your order will be
+  delivered as soon as possible.
+</div>
+
 <!-- Displays each order, product info, and form for update and delete methods-->
 <% @orders.each do |order| %>
   <%= form_for order, remote:true do |f| %>
@@ -44,36 +63,28 @@
   <% end %>
 <% end %>
 
+
+
 <!-- If the cart is not empty then this will display the total to pay
 and also add the paypal button to the page -->
 <% if @orders.length > 0 %>
+<div class="info-block">
 Total = <%= number_to_currency(@cart.total, unit:'£') %>
+<div class="order-confirm hidden">
+  <button id="confirmButton">Complete Payment</button>
+</div>
 <!-- The paypal button itself -->
 <div id="paypal-button-container"></div>
 <!-- This is displayed after logging onto paypal and confirming payment -->
-<div id="confirm" class="hidden">
-  <div class="alert alert-info">
-    Please confirm that the delivery address and order is correct, then press
-    the button to complete your order.
-  </div>
-<div class="delivery-address">
-  <div>Delivery Address:</div>
-  <div><span id="recipient"></span>, <span id="line1"></span>, <span id="city"></span></div>
-  <div><span id="state"></span>, <span id="zip"></span>, <span id="country"></span></div>
-</div>
-  <button id="confirmButton">Complete Payment</button>
-</div>
+
 <!-- This will be displayed after the payment is taken and order is compete -->
-<div id="thanks" class="hidden alert alert-success" role="alert">
-  Thanks, <span id="thanksname"></span> for your purchase! Your order will be
-  delivered as soon as possible.
-</div>
+
 </div>
 <!-- if the shopping cart has no items this will be displayed -->
 <% else %>
   Your cart is empty!
 <% end %>
-
+</div>
 <!-- This script handles the payment through paypal, demo and
 documentation found at https://developer.paypal.com/demo/checkout/#/pattern/client -->
 <script>
@@ -131,15 +142,15 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
               $('.edit-links').hide();
               $('.q-dropdown').hide();
               $('.q-confirm').css({display: "block"});
-              $('#confirm').removeClass('hidden');
+              $('.order-confirm').removeClass('hidden');
               // Listen for click on confirm button
 
               $('#confirmButton').click(function() {
 
                   // Disable the button and show a loading message
 
-                  $('#confirm').text('Loading...');
-                  document.querySelector('#confirm').disabled = true;
+                  $('.order-confirm').text('Loading...');
+                  document.querySelector('.order-confirm').disabled = true;
 
                   // Execute the payment
 
@@ -149,7 +160,7 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
 
                      document.querySelector('#thanksname').innerText = shipping.recipient_name;
 
-                      $('#confirm').addClass('hidden');
+                      $('.order-confirm').addClass('hidden');
                       $('#thanks').removeClass('hidden');
                   });
               });
