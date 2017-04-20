@@ -25,14 +25,14 @@
                             "https://www.instagram.com/sambamy/", target: :_blank %>
       </div>
   </div>
-</div>
+
 
 <% if flash[:success] %>
   <div class="alert alert-success"> <%= flash[:success] %> </div>
 <%end%>
 
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="contact-form">
         <%= form_for @message, url:{action: "create"} do |f| %>
         <%= render 'shared/error_messages' %>
@@ -50,3 +50,4 @@
       </div>
     </div>
   </div>
+</div>
