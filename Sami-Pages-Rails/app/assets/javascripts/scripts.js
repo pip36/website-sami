@@ -18,7 +18,7 @@ var ready = function() {
    HideContents();
 
 //If screen width is small display mobile front page
-
+$('.jumboimage').height($('.jumboimage img').height());
 SetDisplay();
 
 $(window).resize(function(){
@@ -30,13 +30,6 @@ $(window).resize(function(){
 
 // Calls ready function when page is loaded with turbolinks
 $(document).on('turbolinks:load', ready);
-
-$(document).ready(function(){
-  SetDisplay();
-  $(window).resize(function(){
-    SetDisplay()
-  });
-});
 
 
 var HideContents = function(){
