@@ -102,7 +102,7 @@ p{
 }
 
 .navbar-fixed-top{
-  //background-color: $primary-color;
+  background-color: $primary-color;
 }
 
 /* Front Page */
@@ -110,6 +110,7 @@ p{
     overflow: hidden;
     padding:0;
     width: 100%;
+    margin-top:20px;
     img{
       width:inherit;
 
