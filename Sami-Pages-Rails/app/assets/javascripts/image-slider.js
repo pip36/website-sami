@@ -98,7 +98,7 @@ var slider1 = new slider('#slider-1', ["http://cdn1.editmysite.com/uploads/4/5/6
  ['Oboe 1',
   'Oboe 2',
   'Oboe 3'],
-  300,
+  250,
 360);
   slider2.initialize();
 
@@ -110,21 +110,21 @@ var slider1 = new slider('#slider-1', ["http://cdn1.editmysite.com/uploads/4/5/6
    'Oboe 2',
    'Oboe 3',
  'Oboe 4'],
-   300,
+   250,
  270);
    slider3.initialize();
 
    var slider4 = new slider('#slider-4',
    ["http://www.samitaylor.com/uploads/4/5/6/3/45631633/1421439114.png"],
    ['Caccia 1'],
-    300,
+    250,
   600);
     slider4.initialize();
 
     var slider5 = new slider('#slider-5',
     ["http://www.samitaylor.com/uploads/4/5/6/3/45631633/6831411.jpg"],
     ['Oboe 1'],
-     300,
+     250,
    400);
      slider5.initialize();
 });
