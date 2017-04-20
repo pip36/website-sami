@@ -15,4 +15,8 @@ module CartsHelper
     current_cart.order_items.count
   end
 
+  def empty_cart
+  
+  end
+
 end
