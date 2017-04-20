@@ -31,6 +31,12 @@ $(window).resize(function(){
 // Calls ready function when page is loaded with turbolinks
 $(document).on('turbolinks:load', ready);
 
+$(document).ready(function(){
+  SetDisplay();
+  $(window).resize(function(){
+    SetDisplay()
+  });
+});
 
 
 var HideContents = function(){
