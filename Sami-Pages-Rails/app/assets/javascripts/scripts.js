@@ -18,10 +18,11 @@ var ready = function() {
    HideContents();
 
 //If screen width is small display mobile front page
-$('.jumboimage img').onload = function(){
+$('.jumboimage img').ready(function(){
+  console.log("image load");
   $('.jumboimage').height($('.jumboimage img').height());
   SetDisplay();
-};
+});
 
 
 $(window).resize(function(){
