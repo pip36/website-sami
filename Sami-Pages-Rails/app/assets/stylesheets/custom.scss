@@ -72,8 +72,8 @@ p{
 
 #titleLink{
   color: $secondary-color;
-  font-size: 4vw;
-  margin-top: 3px;
+  font-size: 3.0vw;
+  margin-top: 5px;
 
 }
 
@@ -118,14 +118,14 @@ p{
     .inner-image-text{
       position:fixed;
       color:white;
-      width:400px;
+      width:450px;
       right:0;
       bottom:0;
-      margin-right:20px;
-      margin-bottom:10px;
+      margin-right:50px;
+      margin-bottom:30px;
 
       p{
-        font-size: 24px;
+        font-size: 30px;
       }
     }
 }
@@ -201,68 +201,61 @@ padding-left:5px;
     list-style: none;
   }
 }
-//image sliders
-.image-slider{
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-  overflow: hidden;
+
+
+// sliders
+.slider-container {
+  width: 400px;
+  text-align: left;
+}
+
+.slider {
+  width: inherit;
+  height: inherit;
   position: relative;
+  overflow: hidden;
   ul{
-    padding: 0;
-    list-style: none;
-    position: relative;
-    left:0;
+    margin-right:10px;
     li{
-     float:left;
-     width:250px;
-     img{
-       width:inherit;
-       height: inherit;
-       position:absolute;
-       bottom: 0;
-       left:0;
-     }
-   }
-  }
-}
-// The labels for each image on slider
-.image-label{
-  position:absolute;
-  z-index: 1;
-  height:30px;
-  width:250px;
-  background-color: black;
-  opacity: 0.8;
-  color:white;
-  bottom:0;
-  font-size:14px;
-}
-//The thumbnail images for the image slider
-.thumbnails {
-  width:100%;
-  text-align: center;
-    ul{
-      list-style: none;
-      display: inline-block;
-      padding:0;
-      .active img{
-        opacity: 1;
+      img{
+        vertical-align: bottom;
       }
-      li{
-        float: left;
-        margin-right: 5px;
-        img{
-          width:40px;
-          height:30px;
-          opacity: 0.5;
-          }
-        img:hover{
-          opacity: 1;
-        }
     }
   }
 }
+
+.thumbnails {
+  margin-top: 10px;
+  text-align: center;
+}
+.thumbnails ul {
+  list-style: none;
+  padding:0;
+}
+.thumbnails ul .active-thumb {
+  opacity: 1;
+}
+.thumbnails ul li {
+  display: inline-block;
+  opacity: 0.5;
+  margin-top: 3px;
+
+}
+.thumbnails ul li img {
+
+  width: 60px;
+  height: 40px;
+
+}
+
+.img-message{
+  position:relative;
+  margin-top: -20px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
 
 .front-content{
   padding: 20px 20px 20px 20px;
