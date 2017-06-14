@@ -9,7 +9,7 @@ $(document).on('turbolinks:load', function(){
     this.currentImage = 1;
     this.sliderSelector = $(this.id);
     this.messages = [];
-    this.interval = setInterval(function(){self.slide()},3000);;
+    this.interval = setInterval(function(){self.slide()},5000);;
   //Call to initialize the slider
     this.Setup = function(messageArr){
       this.width = $(this.id).width();
