@@ -10,6 +10,9 @@ $(document).on('turbolinks:load', function(){
     this.sliderSelector = $(this.id);
     this.messages = [];
     this.interval = setInterval(function(){self.slide()},5000);;
+
+
+
   //Call to initialize the slider
     this.Setup = function(messageArr){
       this.width = $(this.id).width();
@@ -45,10 +48,16 @@ $(document).on('turbolinks:load', function(){
       this.setImage(this.currentImage);
     }
 
+    this.updateWidth = function(){
+      this.width = $(this.id).width();
+      $(this.id + ' .images').css({ 'width': this.width * (this.imageCount + 2)});
+      $(this.id + ' .images li').css({'width': this.width});
+    }
+
   //Moves directly to given image, no animation
     this.setImage = function(index){
       this.currentImage = index;
-      $(this.id + ' .images').css("left", -(this.width * index) + "px");
+      $(this.id + ' .images').css("left", -(100 * index) + "%");
       $(this.id + ' .img-message ').html("<p>" + this.messages[index-1] + "</p>");
       this.updateThumbnails();
     }
@@ -94,7 +103,7 @@ $(document).on('turbolinks:load', function(){
   //Moves to given image with animation
     this.slideToImage = function(index){
       this.currentImage = index;
-      $(this.id + ' .images').animate({left:-(this.width * index) + "px"}, "slow");
+      $(this.id + ' .images').animate({left:-(100 * index) + "%"}, "slow");
       if (this.currentImage >= $(this.id + ' .images li').length-1){
        $(this.id + ' .img-message p').html("<p>" + this.messages[0] + "</p>");
      }
@@ -107,26 +116,39 @@ $(document).on('turbolinks:load', function(){
     }
   }
 
+  var sliders = [];
   //initialise a slider
   var sliderCases = new Slider('#slider-cases');
+  sliders.push(sliderCases);
   sliderCases.Setup([" ",
                 " ",
                 " ",
                 " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]);
 
   var sliderSami = new Slider('#slider-sami');
-  sliderSami.Setup([" ", " ", " ", " ", " ", " "]);
+  sliders.push(sliderSami);
+  sliderSami.Setup(["Something about costume", " ", " ", " ", " ", " "]);
 
   var sliderBOboe = new Slider('#slider-b-oboe');
+  sliders.push(sliderBOboe);
   sliderBOboe.Setup([" ", ""]);
 
   var sliderBDamore = new Slider('#slider-b-damore');
+  sliders.push(sliderBOboe);
   sliderBDamore.Setup([" ", "", "", ""]);
 
   var sliderBCaccia = new Slider('#slider-b-caccia');
+  sliders.push(sliderBCaccia);
   sliderBCaccia.Setup([" "]);
 
   var sliderCOboe = new Slider('#slider-c-oboe');
+  sliders.push(sliderCOboe);
   sliderCOboe.Setup([" "]);
+
+  $(window).resize(function(){
+    for(var i = 0; i < sliders.length; i++){
+      sliders[i].updateWidth();
+    }
+  });
 
 });

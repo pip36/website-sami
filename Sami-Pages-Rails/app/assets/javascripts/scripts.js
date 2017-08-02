@@ -4,6 +4,7 @@ var ready = function() {
       var curr_button = $('#'+event.target.id);
       var content = curr_button.parent().prev();
 
+
       content.toggle("slow", function(){});
       if (curr_button.html() == "Learn more")
       {
@@ -14,8 +15,8 @@ var ready = function() {
       }
     });
 
-//Hide all extra content tabs
-   HideContents();
+//Hide all extra content tabs, delay so image sliders size correctly
+   setTimeout(HideContents, 50);
 
 //If screen width is small display mobile front page
 $('.jumboimage img').ready(function(){
@@ -37,7 +38,7 @@ $(document).on('turbolinks:load', ready);
 
 
 var HideContents = function(){
-  $('.container .content').hide();
+  $('.container .content').toggle();
 }
 
 var SetDisplay = function(){
