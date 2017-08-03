@@ -150,5 +150,10 @@ $(document).on('turbolinks:load', function(){
       sliders[i].updateWidth();
     }
   });
+  window.addEventListener("orientationchange", function(){
+    for(var i = 0; i < sliders.length; i++){
+      sliders[i].updateWidth();
+    }
+  },false);
 
 });
