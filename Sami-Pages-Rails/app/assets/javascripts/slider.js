@@ -127,7 +127,9 @@ $(document).on('turbolinks:load', function(){
 
   var sliderSami = new Slider('#slider-sami');
   sliders.push(sliderSami);
-  sliderSami.Setup(["Something about costume", " ", " ", " ", " ", " "]);
+  sliderSami.Setup(["1920's Acis and Galetea",
+  "Les Violon du Roi, Cadogan Hall, BBC Prom",
+   "", "Oboe Da Caccia", "Fairy Queen, Treasurer's House", ""]);
 
   var sliderBOboe = new Slider('#slider-b-oboe');
   sliders.push(sliderBOboe);
