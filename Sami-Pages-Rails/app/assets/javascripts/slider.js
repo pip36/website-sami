@@ -1,17 +1,16 @@
-$(document).on('turbolinks:load', function(){
 
-
+var processPage = function(){
+  console.log('image script');
   function Slider(id){
     var self = this;
     this.id = id;
+    this.sliderSelector = $(this.id);
     this.width = 0;
     this.imageCount = 0;
     this.currentImage = 1;
-    this.sliderSelector = $(this.id);
+
     this.messages = [];
     this.interval = setInterval(function(){self.slide()},5000);;
-
-
 
   //Call to initialize the slider
     this.Setup = function(messageArr){
@@ -19,7 +18,9 @@ $(document).on('turbolinks:load', function(){
       this.imageCount = $(this.id + ' .images li').length;
       this.messages = messageArr;
       //generate the thumbnail images underneath
-      $(this.id + ' ul').clone().removeClass("images").appendTo(this.sliderSelector.next());
+
+         $(this.id + ' ul').clone().removeClass("images").appendTo(this.sliderSelector.next());
+
       //set the css for the ul
       $(this.id + ' .images').css({'list-style': 'none',
                                    'width': this.width * (this.imageCount + 2),
@@ -41,7 +42,7 @@ $(document).on('turbolinks:load', function(){
         self.interval = window.setInterval(function(){self.slide()},3000);
       });
       // requires the slider interval to be cleared on page exit.
-      $(document).on('turbolinks:before-cache', function(){
+      $(document).on('turbolinks:visit', function(){
         clearInterval(self.interval);
       });
 
@@ -152,10 +153,15 @@ $(document).on('turbolinks:load', function(){
       sliders[i].updateWidth();
     }
   });
-  window.addEventListener("orientationchange", function(){
-    for(var i = 0; i < sliders.length; i++){
-      sliders[i].updateWidth();
-    }
-  },false);
 
-});
+
+}
+
+$(document).on('turbolinks:load', processPage);
+
+
+window.addEventListener("orientationchange", function(){
+  for(var i = 0; i < sliders.length; i++){
+    sliders[i].updateWidth();
+  }
+},false);
