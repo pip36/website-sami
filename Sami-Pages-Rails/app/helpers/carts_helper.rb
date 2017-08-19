@@ -15,8 +15,17 @@ module CartsHelper
     current_cart.order_items.count
   end
 
-  def empty_cart
-  
+
+
+  def complete_purchase(cart)
+    orders = cart.order_items
+    orders.each do |order|
+      curr_stock = order.product.stock
+      curr_order_quantity = order.quantity
+      order.product.update_attribute("stock", curr_stock - curr_order_quantity)
+    end
+    #remove all cart order_items
+    cart.order_items.destroy_all    
   end
 
 end

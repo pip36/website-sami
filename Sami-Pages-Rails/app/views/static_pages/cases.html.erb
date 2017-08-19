@@ -51,13 +51,14 @@
   <%= f.hidden_field :cart_id, value: @cart %>
   <%= f.hidden_field :quantity, value: 1 %>
 <div class="col-md-4">
-<div class="product-card">
-  <h3> <%=product.name%> </h3>
-  <img class="product-image" src=<%= image_url(product.image_path)%>>
-  <br>
-  <p> <%=product.description%> </p>
-  <br>
-  <p><%=number_to_currency(product.unit_price, unit:'£')%> <p>
+  <div class="product-card">
+    <h3> <%=product.name%> </h3>
+    <img class="product-image" src=<%= image_url(product.image_path)%>>
+    <br>
+    <p> <%=product.description%> </p>
+    <br>
+    <p><%=number_to_currency(product.unit_price, unit:'£')%> </p>
+    <p><%=product.stock%> available </p>
 
   <%= f.submit "add to cart" %>
 </div>

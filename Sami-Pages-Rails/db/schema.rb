@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419175908) do
+ActiveRecord::Schema.define(version: 20170818230011) do
 
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -42,8 +42,9 @@ ActiveRecord::Schema.define(version: 20170419175908) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.text     "description"
-    t.string   "category"                  #cane/case for each product category
-    t.string   "image_path"                #image filename from assets folder
+    t.string   "category"
+    t.string   "image_path"
+    t.integer  "stock"
   end
 
 end

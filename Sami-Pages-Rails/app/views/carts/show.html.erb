@@ -89,6 +89,8 @@ Total = <%= number_to_currency(@cart.total, unit:'£') %>
 documentation found at https://developer.paypal.com/demo/checkout/#/pattern/client -->
 <script>
 
+
+
   // Render the PayPal button
   paypal.Button.render({
 
@@ -157,18 +159,33 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
                   return actions.payment.execute().then(function() {
 
                       // Show a thank-you note
-
+                      console.log("Payment Complete")
+                      $.get("/carts/purchase", function(response){
+                        console.log("ajax");
+                      });
                      document.querySelector('#thanksname').innerText = shipping.recipient_name;
 
                       $('.order-confirm').addClass('hidden');
                       $('#thanks').removeClass('hidden');
 
+                      //AJAX request to controller method calling helper
+                      //update the stock attribute for each product in order
+
+                      //destroy all order items
                       // Empty shopping cart
-                      //<%= empty_cart %>
+
                   });
+
+
+                  // update_after_payment(@cart)
               });
           });
       }
 
   }, '#paypal-button-container');
+
+
+
+
+
 </script>
