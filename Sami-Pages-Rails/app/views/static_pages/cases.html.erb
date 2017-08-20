@@ -44,7 +44,7 @@
   <div class="row">
 <% @caseproducts.each do |product| %>
 
-
+<% if product.stock > 0 %>
 
 <%= form_for @order_item, url: order_items_url, remote: true do |f| %>
   <%= f.hidden_field :product_id, value: product.id %>
@@ -58,12 +58,18 @@
     <p> <%=product.description%> </p>
     <br>
     <p><%=number_to_currency(product.unit_price, unit:'£')%> </p>
-    <p><%=product.stock%> available </p>
-
+    <% if product.stock > 0 && product.stock <= 100 %>
+      <p><%=product.stock%> available </p>
+    <% elsif product.stock > 100 %>
+      <p> available </p>
+    <% else %>
+      <p> out of stock </p>
+   <% end %>
   <%= f.submit "add to cart" %>
 </div>
 </div>
     <% end %>
+<% end %>
 
   <% end %>
 </div>
