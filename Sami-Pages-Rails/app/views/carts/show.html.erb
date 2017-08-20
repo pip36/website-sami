@@ -95,7 +95,7 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
   paypal.Button.render({
 
       // Set your environment
-      env: 'sandbox', // sandbox | production
+      env: 'production', // sandbox | production
 
       style: {
           size: 'small',
@@ -106,8 +106,8 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
 
       // Create a PayPal app: https://developer.paypal.com/developer/applications/create
       client: {
-        sandbox:    'AeV0YsJsQbIRT-aJjjDc14nXntGVpUVtqMi7jVH72VQIi4nh1SmuR3RbCgIR2iWkyGINDe6zBXd4nRqL',
-        production: 'AXTUgoZOvnOTLN7QENMCv7rokmz2q3JyH3NR74vkZSm_7IOOBynM-zWmZSAwU747JuZaiApOFrYeJKa6'
+        sandbox:    <%= ENV['PAYPAL_CLIENT_SANDBOX'] %>,
+        production: <%= ENV['PAYPAL_CLIENT_PRODUCTION'] %>
       },
 
       // Wait for the PayPal button to be clicked
