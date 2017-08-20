@@ -4,14 +4,17 @@ class CartsController < ApplicationController
     @cart = current_cart
     @orders = @cart.order_items
     @products = @cart.products
+
+    respond_to do |format|
+      format.html
+      format.json { render json: {orders: @orders, products: @products} }
+    end
   end
 
   def purchase
     respond_to do |format|
-      format.js 
+      format.js
     end
   end
-
-
 
 end

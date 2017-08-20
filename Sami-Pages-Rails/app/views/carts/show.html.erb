@@ -69,7 +69,7 @@
 and also add the paypal button to the page -->
 <% if @orders.length > 0 %>
 <div class="info-block">
-Total = <%= number_to_currency(@cart.total, unit:'£') %>
+Total = <%= number_to_currency(@cart.total, unit:'£') %>  + £1.99 delivery
 <div class="order-confirm hidden">
   <button id="confirmButton">Complete Payment</button>
 </div>
@@ -89,13 +89,33 @@ Total = <%= number_to_currency(@cart.total, unit:'£') %>
 documentation found at https://developer.paypal.com/demo/checkout/#/pattern/client -->
 <script>
 
+$.getJSON("" ,function(response){
+  orders = [];
+  products = [];
+
+  for(var i = 0; i < response.orders.length; i++){
+    orders.push(response.orders[i]);
+    products.push(response.products[i]);
+  }
+  console.log(orders[0]);
+  console.log(products[0]);
+  items = [];
+ for(var i = 0; i < orders.length; i++){
+   items.push({
+       name: products[i].name,
+       description: products[i].description,
+       quantity: orders[i].quantity.toString(),
+       price: (products[i].unit_price).toString(),
+       currency: 'GBP'
+     });
+ }
 
 
   // Render the PayPal button
   paypal.Button.render({
 
       // Set your environment
-      env: 'production', // sandbox | production
+      env: 'sandbox', // sandbox | production
 
       style: {
           size: 'small',
@@ -112,16 +132,49 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
 
       // Wait for the PayPal button to be clicked
       payment: function() {
-
+          var env = this.props.env;
+          var client = this.props.client;
           // Make a client-side call to the REST api to create the payment
           var order_total = <%= @cart.total.to_s %>;
-          return paypal.rest.payment.create(this.props.env, this.props.client, {
+          var total_include_delivery = <%= (@cart.total + 1.99).to_s %>;
+          //request for cart
+          var cart_id = <%= @cart.id.to_s %>
+
+
+console.log(response);
+
+            //  products = [];
+          //  for(var i = 0; i < response.products.length; i++){
+            //  products.push(response.products[i]);
+          //  }
+
+
+
+console.log(order_total);
+
+
+          return paypal.rest.payment.create(env, client, {
+
                 transactions: [
                     {
-                        amount: { total: order_total, currency: 'GBP' }
-                    }
+                        amount: {
+                          total: total_include_delivery,
+                          currency: 'GBP',
+                          details: {
+                            subtotal: order_total,
+                            shipping: '1.99'
+                          }
+                        },
+//MAKE THIS LIST ALL ITEMS
+                        item_list: {
+                          items: items
+                       }
+                     }
                 ]
+
+
             });
+
         },
 
       // Wait for the payment to be authorized by the customer
@@ -159,9 +212,9 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
                   return actions.payment.execute().then(function() {
 
                       // Show a thank-you note
-                      console.log("Payment Complete")
+
                       $.get("/carts/purchase", function(response){
-                        console.log("ajax");
+
                       });
                      document.querySelector('#thanksname').innerText = shipping.recipient_name;
 
@@ -185,7 +238,7 @@ documentation found at https://developer.paypal.com/demo/checkout/#/pattern/clie
   }, '#paypal-button-container');
 
 
-
+});
 
 
 </script>
