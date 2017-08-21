@@ -89,6 +89,7 @@ Total = <%= number_to_currency(@cart.total, unit:'£') %>  + £1.99 delivery
 documentation found at https://developer.paypal.com/demo/checkout/#/pattern/client -->
 <script>
 
+
 $.getJSON("" ,function(response){
   orders = [];
   products = [];
@@ -97,8 +98,7 @@ $.getJSON("" ,function(response){
     orders.push(response.orders[i]);
     products.push(response.products[i]);
   }
-  console.log(orders[0]);
-  console.log(products[0]);
+
   items = [];
  for(var i = 0; i < orders.length; i++){
    items.push({
@@ -115,7 +115,7 @@ $.getJSON("" ,function(response){
   paypal.Button.render({
 
       // Set your environment
-      env: 'production', // sandbox | production
+      env: 'sandbox', // sandbox | production
 
       style: {
           size: 'small',
