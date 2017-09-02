@@ -27,6 +27,10 @@ a{
   font-size: 24px;
 }
 
+.small-link{
+  font-size: 18px;
+}
+
 .container{
   margin-top: 60px; //margin to place content below header
 }
@@ -88,7 +92,6 @@ a{
   background-color: $primary-color;
 }
 
-
 .navbar-right {
   margin-right: 20px;
   li{
@@ -105,24 +108,21 @@ a{
   background-color: $primary-color;
 }
 
+
 /* Front Page */
 .jumboimage{
-    overflow: hidden;
     padding:0;
     width: 100%;
-    margin-top:20px;
     img{
       width:inherit;
-
     }
 
-/* the text box on front page*/
-@media screen and (max-width: 1200px) {
-    .inner-image-text {
-        display: none;
+   @media screen and (max-width: 1200px) {
+     .inner-image-text {
+        display: none; //remove image text on small screens
+      }
     }
-}
-
+    // display text for large screens
     .inner-image-text{
       position:fixed;
       color:white;
@@ -131,7 +131,6 @@ a{
       bottom:0;
       margin-right:50px;
       margin-bottom:30px;
-
       p{
         font-family: 'Dosis', sans-serif;
         font-size: 30px;
@@ -144,10 +143,10 @@ a{
 
 @media screen and (min-width: 1200px) {
     .front-mobile-text {
-        display: none;
+        display: none; //remove mobile text for large screens
     }
 }
-
+//content for small screens
 .front-mobile-text{
   color:purple;
   background-color: white;
@@ -195,7 +194,7 @@ a{
 .contact-form{
   background-color: #f8f8f8;
   margin-top: 30px;
-padding-left:5px;
+  padding-left:5px;
   label{
     width: 3em;
     float: left;
