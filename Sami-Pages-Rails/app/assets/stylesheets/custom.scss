@@ -17,8 +17,7 @@ body {
 }
 
 p{
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
   font-size: 18px;
 }
 
@@ -120,6 +119,12 @@ p{
     }
 
 /* the text box on front page*/
+@media screen and (max-width: 1200px) {
+    .inner-image-text {
+        display: none;
+    }
+}
+
     .inner-image-text{
       position:fixed;
       color:white;
@@ -131,9 +136,17 @@ p{
 
       p{
         font-size: 30px;
+        font-weight: 200;
       }
     }
 }
+
+@media screen and (min-width: 1200px) {
+    .front-mobile-text {
+        display: none;
+    }
+}
+
 .front-mobile-text{
   color:purple;
   background-color: white;
