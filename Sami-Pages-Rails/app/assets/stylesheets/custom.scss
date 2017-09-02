@@ -11,12 +11,13 @@ html, body{
 }
 
 body {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Dosis', sans-serif;
   font-size: 24px;
   color: purple;
 }
 
 p{
+  font-family: 'Open Sans', sans-serif;
   text-align: left;
   font-size: 18px;
 }
@@ -67,8 +68,8 @@ p{
   .cart-counter{
     position:absolute;
     color: $primary-color;
-    font-size: 0.9em;
-    left: 12px;
+    font-size: 0.8em;
+    left: 15px;
   }
 }
 
@@ -135,8 +136,8 @@ p{
       margin-bottom:30px;
 
       p{
+        font-family: 'Dosis', sans-serif;
         font-size: 30px;
-        font-weight: 200;
       }
     }
 }
