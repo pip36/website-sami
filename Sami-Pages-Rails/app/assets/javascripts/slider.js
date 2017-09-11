@@ -1,6 +1,5 @@
 
 var processPage = function(){
-  console.log('image script');
   function Slider(id){
     var self = this;
     this.id = id;
@@ -10,12 +9,15 @@ var processPage = function(){
     this.currentImage = 1;
 
     this.messages = [];
-    this.interval = setInterval(function(){self.slide()},5000);;
+    this.interval = null;
 
   //Call to initialize the slider
     this.Setup = function(messageArr){
       this.width = $(this.id).width();
       this.imageCount = $(this.id + ' .images li').length;
+      if(this.imageCount > 1){
+        this.interval = setInterval(function(){self.slide()},6000);
+      }
       this.messages = messageArr;
       //generate the thumbnail images underneath
 
@@ -39,7 +41,10 @@ var processPage = function(){
       this.sliderSelector.next().find("li").on("click", function(event){
         self.setImage($(this).index() + 1);
         clearInterval(self.interval);
-        self.interval = window.setInterval(function(){self.slide()},3000);
+        if(self.imageCount > 1){
+          self.interval = window.setInterval(function(){self.slide()},6000);
+        }
+
       });
       // requires the slider interval to be cleared on page exit.
       $(document).on('turbolinks:visit', function(){
@@ -80,6 +85,7 @@ var processPage = function(){
 
   //Slide to the next image and account for image wrapping
     this.slide = function(){
+
       //set 1 for forward scrolling, -1 for backward
       this.currentImage += 1;
       //Wrap the image when going beyond last image
@@ -134,11 +140,11 @@ var processPage = function(){
 
   var sliderBOboe = new Slider('#slider-b-oboe');
   sliders.push(sliderBOboe);
-  sliderBOboe.Setup([" ", "", ""]);
+  sliderBOboe.Setup(["", ""]);
 
-  var sliderBDamore = new Slider('#slider-b-damore');
-  sliders.push(sliderBOboe);
-  sliderBDamore.Setup([" ", "", "", ""]);
+//  var sliderBDamore = new Slider('#slider-b-damore');
+//  sliders.push(sliderBOboe);
+//  sliderBDamore.Setup([" ", "", "", ""]);
 
   var sliderBCaccia = new Slider('#slider-b-caccia');
   sliders.push(sliderBCaccia);

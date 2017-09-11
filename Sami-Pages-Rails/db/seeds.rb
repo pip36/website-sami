@@ -7,18 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 products = Product.create([
-  {name: 'Rouche Cane', image_path:'1489520659_square-twitter.png', category: 'cane', unit_price: '1.80',
-    description:'Flexible cane from south france with a lovely warm tone'},
+  {name: 'Rouche Cane', image_path:'rouche-cane.jpg', category: 'cane', unit_price: '1.80',
+    description:'Flexible cane from south france with a lovely warm tone', stock: 10000},
 
-  {name: 'Neuranter Cane', image_path:'1489520704_square-facebook.png', category: 'cane', unit_price: '1.80',
-    description:'Otherwise known as magic cane, this cane is in high demand!'},
+  {name: 'Neuranter Cane', image_path:'nuer-cane.jpg', category: 'cane', unit_price: '1.80',
+    description:'Otherwise known as magic cane, this cane is in high demand!', stock: 10000},
 
-    {name: 'Recorder Case', image_path:'1489520659_square-twitter.png', category: 'case', unit_price: '15.00',
-      description:'A single recorder case'},
+    {name: 'Recorder Case', image_path:'1-t-recorder.jpg', category: 'case', unit_price: '15.00',
+      description:'A single recorder case', stock: 3},
 
-      {name: 'Oboe Case', image_path:'1489520659_square-twitter.png', category: 'case', unit_price: '35.00',
-        description:'an oboe case'},
+      {name: 'Oboe Case', image_path:'2-ob-damore.jpg', category: 'case', unit_price: '35.00',
+        description:'an oboe case', stock: 1},
 
-        {name: "Double Oboe/D'Amore Case", image_path:'1489520659_square-twitter.png', category: 'case', unit_price: '50.00',
-          description:'A large double case in red!'}
+        {name: "Double Oboe/D'Amore Case", image_path:'1-ob-damore-1.jpg', category: 'case', unit_price: '50.00',
+          description:'A large double case in red!', stock: 1}
   ])
