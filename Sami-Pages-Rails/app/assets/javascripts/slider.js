@@ -150,9 +150,9 @@ var processPage = function(){
   sliders.push(sliderBCaccia);
   sliderBCaccia.Setup([" "]);
 
-  var sliderCOboe = new Slider('#slider-c-oboe');
-  sliders.push(sliderCOboe);
-  sliderCOboe.Setup([" "]);
+  //var sliderCOboe = new Slider('#slider-c-oboe');
+  //sliders.push(sliderCOboe);
+  //sliderCOboe.Setup([" "]);
 
   $(window).resize(function(){
     for(var i = 0; i < sliders.length; i++){
@@ -164,6 +164,7 @@ var processPage = function(){
 }
 
 $(document).on('turbolinks:load', processPage);
+//$(document).ready(processPage);
 
 
 window.addEventListener("orientationchange", function(){
