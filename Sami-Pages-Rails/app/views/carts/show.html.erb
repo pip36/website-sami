@@ -41,7 +41,7 @@
 
     <div class="col-md-2 cart-item-info">
       <h3> Quantity </h3>
-      <span class='q-dropdown'><%= f.number_field(:quantity, in: 1.0..100.0, step: 1.0) %></span>
+      <span class='q-dropdown'><%= f.number_field(:quantity, in: 10..100, step: 1) %></span>
       <span class='q-confirm' style='display:none'> <%= order.quantity %> </span>
     </div>
 

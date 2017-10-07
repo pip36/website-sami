@@ -3,7 +3,7 @@ class OrderItem < ApplicationRecord
   belongs_to :cart
 
   validates :product_id, presence: true
-  validates :quantity, presence: true, numericality: {greater_than: 0}
+  validates :quantity, presence: true, numericality: {greater_than: 0, only_integer: true}
   validate :product_in_stock
 
   def subtotal

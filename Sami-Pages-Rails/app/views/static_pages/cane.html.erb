@@ -25,7 +25,8 @@
   <p> <%=product.description%> </p>
   <br>
   <p><%=number_to_currency(product.unit_price, unit:'£')%> per piece<p>
-  <%= f.select :quantity, ['0','5','10','15','20','25'] %>
+
+  <%= f.number_field :quantity, in: 10..100, step: 1 %>
   <% if product.stock < 1 %>
     <p> out of stock </p>
   <% end %>
