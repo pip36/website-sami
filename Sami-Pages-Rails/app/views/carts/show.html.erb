@@ -141,7 +141,7 @@ $.getJSON("" ,function(response){
           var cart_id = <%= @cart.id.to_s %>
 
 
-console.log(response);
+//console.log(response);
 
             //  products = [];
           //  for(var i = 0; i < response.products.length; i++){
@@ -150,7 +150,7 @@ console.log(response);
 
 
 
-console.log(order_total);
+//console.log(order_total);
 
 
           return paypal.rest.payment.create(env, client, {
